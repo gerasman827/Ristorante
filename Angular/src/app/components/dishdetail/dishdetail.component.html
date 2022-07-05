@@ -42,6 +42,43 @@
         </p>
       </mat-card-content>
     </mat-card>
+    <p>
+      {{ feedbackForm.value | json }}
+      {{ feedbackForm.status | json }}
+    </p>
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="author">
+          <mat-error *ngIf="formErrors.author">
+            {{formErrors.author}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-label>Stars: </mat-label>
+        <mat-slider thumbLabel
+        tickInterval="5"
+        step="1"
+        min="0"
+        max="5"
+        aria-label="units"
+        formControlName="rating">
+        </mat-slider>
+      </p>
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Your Comment</mat-label>
+          <textarea matInput placeholder="Your Comment" rows="4" formControlName="comment"></textarea>
+          <mat-error *ngIf="formErrors.comment">
+            {{formErrors.comment}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <button type="submit" mat-button class="background-primary text-floral-white">Send</button>
+      </p>
+    </form>
   </div>
-
 </div>
