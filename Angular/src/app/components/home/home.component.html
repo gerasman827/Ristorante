@@ -1,0 +1,58 @@
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px">
+
+  <div>
+    <mat-card *ngIf="dish" fxFlex>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>
+          <h3>{{dish.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+      <mat-card-content>
+        <p>{{dish.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="promotion" fxFlex>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>
+          <h3>{{promotion.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{promotion.image}} alt={{promotion.name}}>
+      <mat-card-content>
+        <p>{{promotion.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="leaderFeatured" fxFlex>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>
+          <h3>{{leaderFeatured.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{leaderFeatured.image}} alt={{leaderFeatured.name}}>
+      <mat-card-content>
+        <h3>{{leaderFeatured.designation}} </h3>
+        <p>{{leaderFeatured.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div [hidden]="leaderFeatured" [hidden]="promotion">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <!-- <div [hidden]="promotion">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div> -->
+
+</div>
