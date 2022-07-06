@@ -8,7 +8,7 @@
           <h3>{{dish.name | uppercase}} </h3>
         </mat-card-title>
         <mat-card-subtitle> {{dish.category}} </mat-card-subtitle>
-        <img mat-card-sm-image src="{{dish.image}}" alt="{{dish.name}}">
+        <img mat-card-sm-image src="{{BaseURL + dish.image}}" alt="{{dish.name}}">
       </mat-card-title-group>
       <mat-card-content>
         {{dish.description}}
@@ -38,7 +38,7 @@
         <p>
           {{item.comment}} <br>
           {{item.rating}} Stars <br>
-          -- {{item.author}} <br>
+          -- {{item.author}} -- {{item.date}} <br>
         </p>
       </mat-card-content>
     </mat-card>
@@ -49,7 +49,7 @@
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field appearance="legacy">
-          <mat-label>Name</mat-label>
+          <mat-label>Name</mat-label> 
           <input matInput placeholder="Name" formControlName="author">
           <mat-error *ngIf="formErrors.author">
             {{formErrors.author}}

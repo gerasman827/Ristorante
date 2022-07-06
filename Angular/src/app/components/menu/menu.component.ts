@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { Dish } from 'src/app/shared/dish';
 
 import { DishService } from '../../services/dish.service';
@@ -14,17 +14,22 @@ export class MenuComponent implements OnInit {
   
   dishes:Dish[];
 
-  @Input() selectedDish: Dish;
+  errMess: string;
 
-  constructor(private dishService: DishService) {}
+  // @Input() selectedDish: Dish;
+
+  constructor(private dishService: DishService,
+              @Inject('BaseURL') public BaseURL: any) {}
 
   ngOnInit(): void {
     this.dishService.getDishes()
-        .subscribe(dishes => this.dishes = dishes);
+        .subscribe(dishes => this.dishes = dishes,
+          errmess => this.errMess = <any>errmess);
     
   }
 
-  onSelected(dish: Dish) {
-    this.selectedDish = dish;
-  }
+  // no es necesario debido a que se trabaja con api-rest
+  // onSelected(dish: Dish) {
+  //   this.selectedDish = dish;
+  // }
 }
