@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, Inject } from '@angular/core';
 
-import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 import { Params, ActivatedRoute } from '@angular/router'; // para recibir por parámetros los valores desde url
 import { Location } from '@angular/common';
@@ -12,23 +12,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback } from 'src/app/shared/feedback';
 import { Comment } from 'src/app/shared/comment';
 
+import { visibility, expand, flyInOut } from 'src/app/animations/app.animations';
+
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
   animations: [
-    trigger('visibility', [
-        state('shown', style({
-            transform: 'scale(1.0)',
-            opacity: 1
-        })),
-        state('hidden', style({
-            transform: 'scale(0.5)',
-            opacity: 0
-        })),
-        transition('* => *', animate('0.5s ease-in-out'))
-    ])
+    visibility(),
+    expand(),
+    flyInOut()
   ]
 })
 
